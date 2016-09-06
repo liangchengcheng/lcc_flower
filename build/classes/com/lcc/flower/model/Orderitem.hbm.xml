@@ -3,16 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.lcc.flower.model.Orderitem" table="ORDERITEM">
+    <class name="com.lcc.flower.model.Orderitem" table="orderitem">
         <id name="orderitemid" type="java.lang.Integer">
-            <column name="ORDERITEMID" />
-            <generator class="assigned" />
+            <column name="orderitemid" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="flower" class="com.lcc.flower.model.Flower" fetch="join">
-            <column name="FLOWER" />
+        <many-to-one name="flower" class="com.lcc.flower.model.Flower" fetch="select">
+            <column name="flowerid" />
         </many-to-one>
         <many-to-one name="orders" class="com.lcc.flower.model.Orders" fetch="join">
-            <column name="ORDERS" />
+            <column name="ordersid" />
         </many-to-one>
         <property name="quantity" type="java.lang.Integer">
             <column name="QUANTITY" />

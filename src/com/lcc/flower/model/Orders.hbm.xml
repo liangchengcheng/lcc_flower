@@ -3,24 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.lcc.flower.model.Orders" table="ORDERS">
+    <class name="com.lcc.flower.model.Orders" table="orders">
         <id name="orderid" type="java.lang.Integer">
-            <column name="ORDERID" />
-            <generator class="assigned" />
+            <column name="orderid" />
+            <generator class="inentity" />
         </id>
-        <many-to-one name="user" class="com.lcc.flower.model.User" fetch="join">
-            <column name="USER" />
+        <many-to-one name="user" class="com.lcc.flower.model.User" fetch="select">
+            <column name="userid" />
         </many-to-one>
         <property name="orderdate" type="java.security.Timestamp">
-            <column name="ORDERDATE" />
+            <column name="orderdate"  length="19"/>
         </property>
-        <set name="orderitems" table="ORDERS" inverse="false" lazy="true">
+        <set name="orderitems" inverse="true" cascade="all" >
             <key>
-                <column name="ORDERID" />
+                <column name="orderid" />
             </key>
-            <element type="string">
-                <column name="ORDERITEMS" />
-            </element>
+            <one-to-many class="com.lcc.flower.model.Orderitem"/>
         </set>
     </class>
 </hibernate-mapping>

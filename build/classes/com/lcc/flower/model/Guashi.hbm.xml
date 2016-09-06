@@ -3,11 +3,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="com.lcc.flower.model.Guashi" table="GUASHI">
+    <class name="com.lcc.flower.model.Guashi" table="guashi">
         <id name="id" type="java.lang.Integer">
-            <column name="ID" />
-            <generator class="assigned" />
+            <column name="id" />
+            <generator class="identity" />
         </id>
-        <one-to-one name="user" class="com.lcc.flower.model.User"></one-to-one>
+        <many-to-one name="user" class="com.lcc.flower.model.User" fetch="select" unique="true">
+        	<column name="userid" />
+        </many-to-one>
     </class>
 </hibernate-mapping>
