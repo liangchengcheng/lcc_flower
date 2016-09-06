@@ -10,7 +10,6 @@ public class Orderitem implements Serializable {
 	private Integer quantity;
 
 	// Constructors
-
 	/** default constructor */
 	public Orderitem() {
 	}

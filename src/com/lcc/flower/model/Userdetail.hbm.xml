@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.lcc.flower.model.Userdetail" table="USERDETAIL">
+        <id name="userid" type="java.lang.Integer">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <one-to-one name="user" class="com.lcc.flower.model.User"></one-to-one>
+        <property name="xb" type="java.lang.Byte">
+            <column name="XB" />
+        </property>
+        <property name="truename" type="java.lang.String">
+            <column name="TRUENAME" />
+        </property>
+        <property name="csrq" type="java.util.Date">
+            <column name="CSRQ" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="ADDRESS" />
+        </property>
+    </class>
+</hibernate-mapping>

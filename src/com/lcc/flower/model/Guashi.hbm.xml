@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.lcc.flower.model.Guashi" table="GUASHI">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <one-to-one name="user" class="com.lcc.flower.model.User"></one-to-one>
+    </class>
+</hibernate-mapping>

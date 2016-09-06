@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.lcc.flower.model.Flower" table="flower">
+        <id name="flowerid" type="java.lang.Integer">
+            <column name="flowerid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="catalog" class="com.lcc.flower.model.Catalog" fetch="select">
+            <column name="catalogid" />
+        </many-to-one>
+        <property name="flowername" type="java.lang.String">
+            <column name="flowername" length="20" />
+        </property>
+        <property name="price" type="java.lang.Integer">
+            <column name="price" />
+        </property>
+        <property name="picture" type="java.lang.String">
+            <column name="picture" />
+        </property>
+        <set name="orderitems" inverse="true">
+            <key>
+                <column name="FLOWERID" />
+            </key>
+            <element type="string">
+                <column name="ORDERITEMS" />
+            </element>
+        </set>
+    </class>
+</hibernate-mapping>

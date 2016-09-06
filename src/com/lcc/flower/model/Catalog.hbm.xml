@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.lcc.flower.model.Catalog" table="catalog" catalog="jkxyshsflower">
+        <id name="catalogid" type="java.lang.Integer">
+            <column name="catalogid" />
+            <generator class="identity" />
+        </id>
+        <property name="catalogname" type="java.lang.String">
+            <column name="catalogname" length="20" />
+        </property>
+        <set name="flowers" inverse="true">
+            <key>
+                <column name="catalogid" />
+            </key>
+           <one-to-many class="com.lcc.flower.model.Flower" />
+        </set>
+    </class>
+</hibernate-mapping>
