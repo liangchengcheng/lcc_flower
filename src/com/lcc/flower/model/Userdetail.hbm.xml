@@ -1,31 +1,43 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<!--使用另外一个相关联的对象的标识符作为主键。 -->
+<!-- constrained只能在one-to-one的映射中使用，（一般在主表的映射中，有外键的那个表） 。
+如果constrained=true，则表明存在外键与关联表对应，并且关联表中肯定存在对应的键与其对应， 
+	另外该选项最关键的是影响save和delete的先后顺序。例如增加的时候， 
+	如果constainted=true,则会先增加关联表，然后增加本表。删除的时候反之。 
+	one-to-one的单向关联中，如果constrained=false，则会在查询时就全部取出来 
+	，用left outer join的方式。如果constrained=true，hibernate即会延迟加载sql， 
+	只把主表的查出来，等有用到关联表的再发sql取。
+	 one-to-one的双向关联中，必须设置constrained=true，要不然会有重复数据读， 
+	如2个表user，car；在位false时sql如下： select * from user a left outer join car b on 
+	a.id=b.id left outer join on user c on a.id=c.id where a.id=?
+	 删除的时候最好删除从表，删除主表会先查询下主表，在联合查询下。 -->
 <hibernate-mapping>
-    <class name="com.lcc.flower.model.Userdetail" table="USERDETAIL">
-        <id name="userid" type="java.lang.Integer">
-            <column name="USERID" />
-            <generator class="assigned" />
-        </id>
-        <one-to-one name="user" class="com.lcc.flower.model.User"></one-to-one>
-        <property name="xb" type="java.lang.Byte">
-            <column name="XB" />
-        </property>
-        <property name="truename" type="java.lang.String">
-            <column name="TRUENAME" />
-        </property>
-        <property name="csrq" type="java.util.Date">
-            <column name="CSRQ" />
-        </property>
-        <property name="phone" type="java.lang.String">
-            <column name="PHONE" />
-        </property>
-        <property name="email" type="java.lang.String">
-            <column name="EMAIL" />
-        </property>
-        <property name="address" type="java.lang.String">
-            <column name="ADDRESS" />
-        </property>
-    </class>
+	<class name="com.lcc.flower.model.Userdetail" table="userdetail">
+		<id name="userid" type="java.lang.Integer">
+			<column name="userid" />
+			<generator class="foregn" />
+		</id>
+		<one-to-one name="user" class="com.lcc.flower.model.User"
+			constrained="true"></one-to-one>
+		<property name="xb" type="java.lang.Byte">
+			<column name="xb" />
+		</property>
+		<property name="truename" type="java.lang.String">
+			<column name="truename" length="20"/>
+		</property>
+		<property name="csrq" type="java.util.Date">
+			<column name="csrq" length="10" />
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column name="phone" length="11"/>
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="email" length="30" />
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="address" length="500"/>
+		</property>
+	</class>
 </hibernate-mapping>

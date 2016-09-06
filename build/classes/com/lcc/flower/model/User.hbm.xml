@@ -2,30 +2,30 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-9-6 22:00:19 by Hibernate Tools 3.5.0.Final -->
+<!-- class =assigned说明id是外部程序生成的 identity是数据库自己生成 -->
 <hibernate-mapping>
-    <class name="com.lcc.flower.model.User" table="USER">
+    <class name="com.lcc.flower.model.User" table="user">
         <id name="userid" type="java.lang.Integer">
-            <column name="USERID" />
+            <column name="userid" />
             <generator class="assigned" />
         </id>
         <property name="username" type="java.lang.String">
-            <column name="USERNAME" />
+            <column name="username"  length="20"/>
         </property>
         <property name="password" type="java.lang.String">
-            <column name="PASSWORD" />
+            <column name="password" length="20"/>
         </property>
         <property name="role" type="java.lang.String">
-            <column name="ROLE" />
+            <column name="role" length="10"/>
         </property>
-        <one-to-one name="guashi" class="com.lcc.flower.model.Guashi"></one-to-one>
-        <one-to-one name="userdetail" class="com.lcc.flower.model.Userdetail"></one-to-one>
-        <set name="orderses" table="USER" inverse="false" lazy="true">
+        
+        <one-to-one name="guashi" class="com.lcc.flower.model.Guashi" property-ref="user"></one-to-one>
+        <one-to-one name="userdetail" class="com.lcc.flower.model.Userdetail" cascade="all"></one-to-one>
+        <set name="orderses" inverse="true">
             <key>
-                <column name="USERID" />
+                <column name="userid" />
             </key>
-            <element type="string">
-                <column name="ORDERSES" />
-            </element>
+            <one-to-many class="com.lcc.flower.model.Orders"/>
         </set>
     </class>
 </hibernate-mapping>
