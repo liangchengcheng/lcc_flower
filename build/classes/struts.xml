@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="loginpac" extends="structs-default" namespace="/login">
+		<interceptors>
+			<interceptor name="guashiinter" class="com.lcc.flower.util.guashiInter"></interceptor>
+			<interceptor-stack name="mystack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="guashiinter"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 用户登录等相关的操作加了拦截器的 -->
+		<action name="checkUser" class="userAction" method="checkUser">
+			<result name="success">/login_success.jsp</result>
+			<result name="error">/login_failure.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="guashiinter"></interceptor-ref>
+		</action>
+	</package>
+</struts>    
