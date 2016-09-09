@@ -130,4 +130,40 @@ public class userAction extends ActionSupport{
 		return ERROR;
 	}
 	
+	/**
+	 * 编辑用户的信息
+	 * @return
+	 * @throws Exception
+	 */
+	public String updateUserDatail() throws Exception {
+		Map session=(Map) ActionContext.getContext().getSession();
+		User user1 = (User) session.get("user");
+		user1.getUserdetail().setAddress(userdetail.getAddress());
+		user1.getUserdetail().setXb(userdetail.getXb());
+		user1.getUserdetail().setCsrq(userdetail.getCsrq());
+		user1.getUserdetail().setEmail(userdetail.getEmail());
+		user1.getUserdetail().setPhone(userdetail.getPhone());
+		user1.getUserdetail().setTruename(userdetail.getTruename());
+		
+		if (userService.addOrUpdateUser(user1)) {
+			session.put("user", user1);
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+	
+	public String guashiUser() throws Exception {
+		if (userService.guashiUser(userid)) {
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+	
+	public String jieguaUser()throws Exception{
+		if (userService.jieguaUser(userid)) {
+			return SUCCESS;
+		}
+		return ERROR;
+	}
+	
 }
