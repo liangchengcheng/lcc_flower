@@ -9,7 +9,7 @@
 				<interceptor-ref name="guashiinter"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		
+
 		<!-- 用户登录等相关的操作加了拦截器的 -->
 		<action name="checkUser" class="userAction" method="checkUser">
 			<result name="success">/login_success.jsp</result>
@@ -17,7 +17,101 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<interceptor-ref name="guashiinter"></interceptor-ref>
 		</action>
+	</package>
+	<!-- ==== -->
+	<package name="default" extends="structs-default">
+		<interceptors>
+			<interceptor name="logininter" class="com.lcc.flower.util.logininter"></interceptor>
+			<interceptor-stack name="loginstack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="logininter"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="browseCatalog" class="flowerAction" method="browsecATALOG">
+			<result name="success">/menu.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="browseNewFlower" class="flowerAction" method="browseNewFlower">
+			<result name="success">/newFlower.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="browseFlowPaging" class="flowerAction" method="browseFlowerPaging">
+			<result name="success">/browseFlowerPaging.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success">/register_success.jsp</result>
+			<result name="error">/register.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="logOut" class="userAction" method="logOut">
+			<result name="success">/index.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
 		
+		<action name="updateUserPassword" class="userAction" method="updateUserPassword">
+			<result name="success">/login.jsp</result>
+			<result name="error">/modifyPassword.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
 		
+		<action name="updateUserDetail" class="userAction" method="updateUserDetail">
+			<result name="success">/updateUserDetail_success.jsp</result>
+			<result name="error">/modifyDetail.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="shoppingAction" class="shoppingAction" method="addToCart">
+			<result name="success">/addToCart_success.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="updateCart" class="shoppingAction" method="updateCart">
+			<result name="success">/showCart.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="checkOut" class="orderAction" method="checkOut">
+			<result name="success">/checkout_success.jsp</result>
+			<result name="error">/login.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="addOrUpdateFlower" class="flowerAction" method="addOrUpdateFlower">
+			<result name="success">/addNewFlower_success.jsp</result>
+			<result name="error">/addNewFlower.jsp</result>
+			<result name="input">/addNewFlower.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="managerFlower" class="flowerAction" method="browseAllFlowerPaging">
+			<result name="success">/browseAllFlowerPaging.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="displayOneFlower" class="flowerAction" method="displayOneFlower">
+			<result name="success">/displayOneFlower.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="deleteOneFlower" class="flowerAction" method="deleteOneFlower">
+			<result name="success">/deleteOneFlower_success.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="guashiUser" class="userAction" method="guashiUser">
+			<result name="success">/czsuccess.jsp</result>
+			<result name="error">/managerUser.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
+		
+		<action name="jieguaUser" class="userAction" method="jieguaUser">
+			<result name="success">/czsuccess.jsp</result>
+			<result name="error">/managerUser.jsp</result>
+			<interceptor-ref name="loginstack"></interceptor-ref>
+		</action>
 	</package>
 </struts>    
