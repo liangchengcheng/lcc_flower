@@ -1,7 +1,8 @@
 package com.lcc.flower.model;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 

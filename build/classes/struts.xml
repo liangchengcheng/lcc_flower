@@ -17,5 +17,7 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<interceptor-ref name="guashiinter"></interceptor-ref>
 		</action>
+		
+		
 	</package>
 </struts>    
