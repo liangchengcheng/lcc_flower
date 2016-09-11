@@ -17,25 +17,17 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+<meta http-equiv="description" content="This is my page">å
 </head>
 
 <body>
 	<jsp:include page="head.jsp"></jsp:include>
 	<div class="content">
 		<div class="left">
-
 			<s:action name="browseCatalog" executeResult="true"></s:action>
-
-
 		</div>
 		<div class="right">
 			<s:set value="#session.cart.items" id="items"></s:set>
-
 			<s:if test="#items.size!=0">
 				<s:iterator value="#items" id="item">
 					<div style="text-align: left">
@@ -63,8 +55,6 @@
 						</s:form>
 					</div>
 				</s:iterator>
-
-
 				<div style="clear: both;">
 					<s:form action="checkOut" method="post">
 						<s:submit value="提交订单"></s:submit>
@@ -74,7 +64,6 @@
 			<s:else>
 		对不起，你购物车没有图书！！
 		</s:else>
-
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
